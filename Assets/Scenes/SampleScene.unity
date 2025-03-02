@@ -931,6 +931,7 @@ MonoBehaviour:
   inputManager: {fileID: 1852137955}
   speed: 4
   jumpForce: 8
+  dashForce: 100
   camera: {fileID: 1304241854}
 --- !u!136 &366375307
 CapsuleCollider:

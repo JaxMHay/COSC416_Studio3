@@ -1,16 +1,19 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float dashForce = 100f;
     [SerializeField] public new CinemachineCamera camera;
 
     private Rigidbody rb;
     private bool isGrounded;
     private bool jumpedTwice;
+    private bool hasDashed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +34,13 @@ public class Player : MonoBehaviour
         {
             JumpPlayer();
             jumpedTwice = true;
+        }
+
+        //dash when shift is pressed
+        if(!hasDashed && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash();
+            hasDashed = true;
         }
     }
 
@@ -62,6 +72,27 @@ public class Player : MonoBehaviour
         // Apply upward force for jump
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
+    private void Dash()
+    {
+        // Get inputs for WASD (Horizontal and Vertical movement)
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        // Get the camera's components to align the movement with the camera direction
+        Vector3 forward = camera.transform.forward;
+        Vector3 right = camera.transform.right;
+
+        forward.y = 0; // Prevent the vertical movement from affecting player movement
+        right.y = 0; // Prevent the vertical movement from affecting player movement
+        forward.Normalize(); // Normalize to ensure constant speed
+        right.Normalize();
+
+
+
+        Vector3 moveDirection = dashForce * (forward * vertical + right * horizontal).normalized;
+        Vector3 targetPosition = rb.position + moveDirection * speed * Time.deltaTime;
+        rb.MovePosition(targetPosition);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -69,6 +100,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true; // Player is on the floor
             jumpedTwice = false; //reset double jump
+            hasDashed = false; //reset dash
         }
     }
 
