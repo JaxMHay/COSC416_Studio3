@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] public new CinemachineCamera camera;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -28,7 +30,22 @@ public class Player : MonoBehaviour
 
     private void MovePlayer(Vector3 direction)
     {
-        Vector3 moveDirection = new(direction.x, 0f, direction.z);
+        // Get inputs for WASD (Horizontal and Vertical movement)
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        // Get the camera's components to align the movement with the camera direction
+        Vector3 forward = camera.transform.forward;
+        Vector3 right = camera.transform.right;
+
+        forward.y = 0; // Prevent the vertical movement from affecting player movement
+        right.y = 0; // Prevent the vertical movement from affecting player movement
+        forward.Normalize(); // Normalize to ensure constant speed
+        right.Normalize();
+
+
+
+        Vector3 moveDirection = (forward * vertical + right * horizontal).normalized;
         Vector3 targetPosition = rb.position + moveDirection * speed * Time.deltaTime;
         rb.MovePosition(targetPosition);
     }
