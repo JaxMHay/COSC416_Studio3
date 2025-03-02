@@ -172,6 +172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin (2)
@@ -345,6 +349,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin (1)
@@ -411,7 +419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score:'
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -995,6 +1003,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -1178,6 +1190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin (4)
@@ -1297,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin (3)
@@ -1598,7 +1618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3008816533494283780, guid: 88964b1c925993349a177f2449c65c50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.77
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 3008816533494283780, guid: 88964b1c925993349a177f2449c65c50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2209,6 +2229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3537470327058006614, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1852137957}
     - target: {fileID: 5711140372683270178, guid: d3aa8d8e704d72a40b54509eaa40fe89, type: 3}
       propertyPath: m_Name
       value: Coin (5)
