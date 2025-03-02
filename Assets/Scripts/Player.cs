@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
+    private bool jumpedTwice;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +26,11 @@ public class Player : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             JumpPlayer();
+        }
+        else if (!isGrounded && !jumpedTwice && Input.GetKeyDown(KeyCode.Space))
+        {
+            JumpPlayer();
+            jumpedTwice = true;
         }
     }
 
@@ -62,6 +68,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true; // Player is on the floor
+            jumpedTwice = false; //reset double jump
         }
     }
 
