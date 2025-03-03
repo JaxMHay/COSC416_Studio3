@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour
 
     void Update()
     {
-        //rotate coin
+        //rotate coin every frame
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
 }

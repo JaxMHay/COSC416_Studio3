@@ -1,6 +1,5 @@
 using Unity.Cinemachine;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
@@ -15,17 +14,16 @@ public class Player : MonoBehaviour
     private bool jumpedTwice;
     private bool hasDashed;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Adding MovePlayer as a listener to the OnMove event
+        //add MovePlayer listener for OnMove
         inputManager.OnMove.AddListener(MovePlayer);
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        // Jump when Spacebar is pressed and only if grounded
+        //jumps when player is grounded or has only jumped once since leaving the ground
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             JumpPlayer();
@@ -46,21 +44,22 @@ public class Player : MonoBehaviour
 
     private void MovePlayer(Vector3 direction)
     {
-        // Get inputs for WASD (Horizontal and Vertical movement)
+        //get inputs forhorizontal and vertical movement
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Get the camera's components to align the movement with the camera direction
+        //get camera components
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
 
-        forward.y = 0; // Prevent the vertical movement from affecting player movement
-        right.y = 0; // Prevent the vertical movement from affecting player movement
-        forward.Normalize(); // Normalize to ensure constant speed
+        //don't allow y-component of camera angle to affect movement
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize(); //normalize to ensure constant speed
         right.Normalize();
 
 
-
+        //calculate movement direction with respect to camera angle, move player accordingly
         Vector3 moveDirection = (forward * vertical + right * horizontal).normalized;
         Vector3 targetPosition = rb.position + moveDirection * speed * Time.deltaTime;
         rb.MovePosition(targetPosition);
@@ -69,26 +68,25 @@ public class Player : MonoBehaviour
 
     private void JumpPlayer()
     {
-        // Apply upward force for jump
+        //apply jump force
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
     private void Dash()
     {
-        // Get inputs for WASD (Horizontal and Vertical movement)
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Get the camera's components to align the movement with the camera direction
+        
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
 
-        forward.y = 0; // Prevent the vertical movement from affecting player movement
-        right.y = 0; // Prevent the vertical movement from affecting player movement
-        forward.Normalize(); // Normalize to ensure constant speed
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
         right.Normalize();
 
 
-
+        //same as code for movePlayer(), but with dashForce component added to simulate a burst of movement
         Vector3 moveDirection = dashForce * (forward * vertical + right * horizontal).normalized;
         Vector3 targetPosition = rb.position + moveDirection * speed * Time.deltaTime;
         rb.MovePosition(targetPosition);
@@ -98,7 +96,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = true; // Player is on the floor
+            isGrounded = true; //player is on the floor
             jumpedTwice = false; //reset double jump
             hasDashed = false; //reset dash
         }
@@ -108,7 +106,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = false; // Player is no longer on the floor
+            isGrounded = false; //player is in the air
         }
     }
 
